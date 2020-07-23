@@ -38,12 +38,16 @@ public class Application {
 
   public static void main(String[] args) {
     SpringApplication app = new SpringApplication(Application.class);
+
+    System.out.println("Setting up defaults");
     Map<String, Object> defaults = new HashMap<String, Object>();
-    defaults.put("clamd.host", "192.168.50.72");
+    defaults.put("clamd.host", "127.0.0.1");
     defaults.put("clamd.port", 3310);
     defaults.put("clamd.timeout", 500);
-    defaults.put("clamd.maxfilesize", "20000KB");
-    defaults.put("clamd.maxrequestsize", "20000KB");
+    defaults.put("clamd.maxfilesize", "20MB");
+    defaults.put("clamd.maxrequestsize", "20MB");
+    defaults.put("spring.servlet.multipart.max-file-size", "20MB");
+    defaults.put("spring.servlet.multipart.max-request-size", "20MB");
     app.setDefaultProperties(defaults);
     app.run(args);
   }
